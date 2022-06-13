@@ -1,0 +1,106 @@
+package com.example.carpoolbuddy.Model;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.carpoolbuddy.R;
+import com.example.carpoolbuddy.Utils.Constants;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+public class VehicleProfileActivity extends AppCompatActivity implements View.OnClickListener{
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
+    private Vehicle selectedVehicle;
+    private TextView ownerTextView;
+    private TextView modelTextView;
+    private TextView maxCapacityTextView;
+    private TextView remainingCapacityTextView;
+    private TextView vehicleTypeTextView;
+    private TextView basePriceTextView;
+    private TextView bookedUIDs;
+    private Button bookRideButton;
+    private TextView rangeField;
+    private LinearLayout layout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_vehicle_profile);
+        mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
+        if(getIntent().hasExtra("selected_vehicle")) {
+            selectedVehicle = (Vehicle) getIntent().getParcelableExtra("selected_vehicle");
+
+            //Common fields
+            vehicleTypeTextView = findViewById(R.id.vehicleTypeDataTextView);
+            ownerTextView = findViewById(R.id.ownerDataTextView);
+            modelTextView = findViewById(R.id.modelDataTextView);
+            maxCapacityTextView = findViewById(R.id.maxCapacityDataTextView);
+            remainingCapacityTextView = findViewById(R.id.remainingCapacityDataTextView);
+            basePriceTextView = findViewById(R.id.basePriceDataTextView);
+            bookedUIDs = findViewById(R.id.bookedUIDsDataTextView);
+
+            vehicleTypeTextView.setText(String.format(selectedVehicle.getVehicleType()));
+            ownerTextView.setText(String.format(selectedVehicle.getOwner()));
+            modelTextView.setText(String.format(selectedVehicle.getModel()));
+            maxCapacityTextView.setText(String.valueOf(selectedVehicle.getCapacity()));
+            remainingCapacityTextView.setText(String.valueOf(selectedVehicle.getRemainingCapacity()));
+            basePriceTextView.setText(String.valueOf(selectedVehicle.getBasePrice()));
+            bookedUIDs.setText(selectedVehicle.getReservedUIDs().toString());
+
+
+        }
+
+        // find the button and attach a listener
+        bookRideButton = findViewById(R.id.bookRideButton);
+        bookRideButton.setOnClickListener(this);
+    }
+
+    public void bookRide() {
+        if(selectedVehicle.getRemainingCapacity() == 1) {
+            firestore.collection("vehicles").document(selectedVehicle.getVehicleID())
+                    .update("open", false);
+        }
+
+        firestore.collection("vehicles").document(selectedVehicle.getVehicleID())
+                .update("remainingCapacity", selectedVehicle.getRemainingCapacity() - 1);
+
+        selectedVehicle.addReservedUID(mAuth.getUid());
+        firestore.collection("vehicles").document(selectedVehicle.getVehicleID())
+                .update("reservedUIDs", selectedVehicle.getReservedUIDs())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = new Intent(getApplicationContext(), VehiclesInfoActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+    }
+
+    @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        if(i == bookRideButton.getId()) {
+            bookRide();
+        }
+    }
+
+    public void goToVehicleInfoActivity(View V){
+        Intent intent = new Intent(this, VehiclesInfoActivity.class);
+        startActivity(intent);
+    }
+}

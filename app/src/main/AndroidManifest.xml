@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carpoolbuddy">
 
     <application
@@ -10,14 +11,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarpoolBuddy">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".vehicles_row_view"
+            android:exported="false" />
+        <activity
+            android:name=".vehicles_row"
+            android:exported="false" />
+        <activity
+            android:name=".Model.CreateUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Model.VehicleProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Model.VehiclesInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Model.AddVehicleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Model.AuthActivity"
+            android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Model.UserProfileActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
