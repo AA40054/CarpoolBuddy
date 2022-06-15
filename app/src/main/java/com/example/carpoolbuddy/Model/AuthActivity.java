@@ -36,14 +36,14 @@ public class AuthActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null) {
-            Intent intent = new Intent(this, UserProfileActivity.class);
-            startActivity(intent);
-        }
-    }
+//    public void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null) {
+//            Intent intent = new Intent(this, UserProfileActivity.class);
+//            startActivity(intent);
+//        }
+//    }
 
     public void signIn(View V){
         System.out.println("Log In");

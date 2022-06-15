@@ -11,10 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarpoolBuddy">
         <activity
-            android:name=".vehicles_row_view"
+            android:name=".Model.AuthActivity"
+            android:exported="true"
+            tools:ignore="Instantiatable">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Model.UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".vehicles_row"
+            android:name=".vehicles_row_view"
             android:exported="false" />
         <activity
             android:name=".Model.CreateUserActivity"
@@ -27,19 +38,6 @@
             android:exported="false" />
         <activity
             android:name=".Model.AddVehicleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Model.AuthActivity"
-            android:exported="true"
-            tools:ignore="Instantiatable">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Model.UserProfileActivity"
             android:exported="false" />
     </application>
 

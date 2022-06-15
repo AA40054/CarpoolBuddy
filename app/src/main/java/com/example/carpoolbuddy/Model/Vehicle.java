@@ -1,12 +1,15 @@
 package com.example.carpoolbuddy.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Vehicle {
+public class Vehicle implements Parcelable {
     private FirebaseAuth mAuth;
     private String owner;
     private String model;
@@ -35,6 +38,31 @@ public class Vehicle {
         this.basePrice = basePrice;
         this.reservedUIDs = new ArrayList<>();
     }
+
+    protected Vehicle(Parcel in) {
+        owner = in.readString();
+        model = in.readString();
+        capacity = in.readInt();
+        remainingCapacity = in.readInt();
+        vehicleID = in.readString();
+        ridersUIDs = in.createStringArrayList();
+        open = in.readByte() != 0;
+        vehicleType = in.readString();
+        basePrice = in.readDouble();
+        reservedUIDs = in.createStringArrayList();
+    }
+
+    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
+        @Override
+        public Vehicle createFromParcel(Parcel in) {
+            return new Vehicle(in);
+        }
+
+        @Override
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
+        }
+    };
 
     public String getOwner() {
         return owner;
@@ -132,4 +160,22 @@ public class Vehicle {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(owner);
+        dest.writeString(model);
+        dest.writeInt(capacity);
+        dest.writeInt(remainingCapacity);
+        dest.writeString(vehicleID);
+        dest.writeStringList(ridersUIDs);
+        dest.writeByte((byte) (open ? 1 : 0));
+        dest.writeString(vehicleType);
+        dest.writeDouble(basePrice);
+        dest.writeStringList(reservedUIDs);
+    }
 }

@@ -11,14 +11,14 @@ import com.example.carpoolbuddy.R;
 public class VehiclesInfoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     protected TextView ownerText;
-    protected TextView seatsText;
+    protected TextView capacityText;
     private OnVehicleListener onVehicleListener;
 
     public VehiclesInfoViewHolder(@NonNull View itemView, OnVehicleListener onVehicleListener) {
         super(itemView);
 
         ownerText = itemView.findViewById(R.id.ownerTextView);
-        seatsText = itemView.findViewById(R.id.seatsTextView);
+        capacityText = itemView.findViewById(R.id.capacityTextView);
         this.onVehicleListener = onVehicleListener;
         itemView.setOnClickListener(this);
     }

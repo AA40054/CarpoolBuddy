@@ -44,14 +44,9 @@
         app:layout_constraintVertical_bias="0.447">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/vehicleTypeLayout"
             android:layout_width="match_parent"
-            android:layout_height="12dp">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp">
+            android:layout_height="36dp">
 
             <LinearLayout
                 android:layout_width="160dp"
@@ -90,12 +85,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ownerLayout"
             android:layout_width="match_parent"
-            android:layout_height="12dp" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp">
+            android:layout_height="41dp">
 
             <LinearLayout
                 android:layout_width="163dp"
@@ -133,14 +125,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/modelLayout"
             android:layout_width="match_parent"
-            android:layout_height="12dp">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp">
+            android:layout_height="41dp">
 
             <LinearLayout
                 android:layout_width="162dp"
@@ -177,14 +164,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/maxCapacityLayout"
             android:layout_width="match_parent"
-            android:layout_height="12dp">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp">
+            android:layout_height="38dp">
 
             <LinearLayout
                 android:id="@+id/linearLayout5"
@@ -200,7 +182,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Max Capacity:"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -221,14 +204,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/remainingCapacityLayout"
             android:layout_width="match_parent"
-            android:layout_height="12dp">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp">
+            android:layout_height="38dp">
 
             <LinearLayout
                 android:id="@+id/linearLayout7"
@@ -267,14 +245,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/priceLayout"
             android:layout_width="match_parent"
-            android:layout_height="12dp">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp">
+            android:layout_height="44dp">
 
             <LinearLayout
                 android:layout_width="166dp"
@@ -313,14 +286,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bookedUIDsLayout"
             android:layout_width="match_parent"
-            android:layout_height="12dp">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp">
+            android:layout_height="40dp">
 
             <LinearLayout
                 android:layout_width="165dp"

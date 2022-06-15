@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -80,7 +81,9 @@ public class VehiclesInfoActivity extends AppCompatActivity implements VehiclesI
 
     @Override
     public void onVehicleClick(int position) {
-
+        Intent intent = new Intent(this, VehicleProfileActivity.class);
+        intent.putExtra("vehicle", (Parcelable) vehiclesList.get(position));
+        startActivity(intent);
     }
 
     @Override

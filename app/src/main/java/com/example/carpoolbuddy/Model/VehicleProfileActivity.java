@@ -3,17 +3,14 @@ package com.example.carpoolbuddy.Model;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.carpoolbuddy.R;
-import com.example.carpoolbuddy.Utils.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +27,8 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
     private TextView vehicleTypeTextView;
     private TextView basePriceTextView;
     private TextView bookedUIDs;
-    private Button bookRideButton;
     private TextView rangeField;
+    private Button bookRideButton;
     private LinearLayout layout;
 
     @Override
@@ -41,8 +38,8 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
-        if(getIntent().hasExtra("selected_vehicle")) {
-            selectedVehicle = (Vehicle) getIntent().getParcelableExtra("selected_vehicle");
+        if(getIntent().hasExtra("vehicle")) {
+            selectedVehicle = (Vehicle) getIntent().getParcelableExtra("vehicle");
 
             //Common fields
             vehicleTypeTextView = findViewById(R.id.vehicleTypeDataTextView);
@@ -53,18 +50,22 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
             basePriceTextView = findViewById(R.id.basePriceDataTextView);
             bookedUIDs = findViewById(R.id.bookedUIDsDataTextView);
 
-            vehicleTypeTextView.setText(String.format(selectedVehicle.getVehicleType()));
-            ownerTextView.setText(String.format(selectedVehicle.getOwner()));
-            modelTextView.setText(String.format(selectedVehicle.getModel()));
+            vehicleTypeTextView.setText(selectedVehicle.getVehicleType());
+            ownerTextView.setText(selectedVehicle.getOwner());
+            modelTextView.setText(selectedVehicle.getModel());
             maxCapacityTextView.setText(String.valueOf(selectedVehicle.getCapacity()));
             remainingCapacityTextView.setText(String.valueOf(selectedVehicle.getRemainingCapacity()));
             basePriceTextView.setText(String.valueOf(selectedVehicle.getBasePrice()));
             bookedUIDs.setText(selectedVehicle.getReservedUIDs().toString());
 
 
-        }
+            /*if(selectedVehicle.getVehicleType().equals("Car")){
+                rangeField = new TextView(this);
+                rangeField.setText("Range:");
+                layout.addView(rangeField);
+            }*/
 
-        // find the button and attach a listener
+        }
         bookRideButton = findViewById(R.id.bookRideButton);
         bookRideButton.setOnClickListener(this);
     }
