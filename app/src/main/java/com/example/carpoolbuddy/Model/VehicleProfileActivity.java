@@ -70,7 +70,7 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
         bookRideButton.setOnClickListener(this);
     }
 
-    public void bookRide() {
+    public void bookTheRide() {
         if(selectedVehicle.getRemainingCapacity() == 1) {
             firestore.collection("vehicles").document(selectedVehicle.getVehicleID())
                     .update("open", false);
@@ -96,7 +96,7 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         int i = v.getId();
         if(i == bookRideButton.getId()) {
-            bookRide();
+            bookTheRide();
         }
     }
 

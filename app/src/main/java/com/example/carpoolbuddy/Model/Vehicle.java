@@ -16,7 +16,6 @@ public class Vehicle implements Parcelable {
     private int capacity;
     private int remainingCapacity;
     private String vehicleID;
-    private ArrayList<String> ridersUIDs;
     private boolean open;
     private String vehicleType;
     private double basePrice;
@@ -32,7 +31,6 @@ public class Vehicle implements Parcelable {
         this.capacity = capacity;
         this.remainingCapacity = remainingCapacity;
         this.vehicleID = vehicleID;
-        this.ridersUIDs = new ArrayList<>();
         this.open = true;
         this.vehicleType = vehicleType;
         this.basePrice = basePrice;
@@ -45,7 +43,6 @@ public class Vehicle implements Parcelable {
         capacity = in.readInt();
         remainingCapacity = in.readInt();
         vehicleID = in.readString();
-        ridersUIDs = in.createStringArrayList();
         open = in.readByte() != 0;
         vehicleType = in.readString();
         basePrice = in.readDouble();
@@ -88,7 +85,7 @@ public class Vehicle implements Parcelable {
         this.capacity = capacity;
     }
 
-    public int getRemainingCapacity() { return capacity; }
+    public int getRemainingCapacity() { return remainingCapacity; }
 
     public void setRemainingCapacity() { this.remainingCapacity = remainingCapacity; }
 
@@ -98,14 +95,6 @@ public class Vehicle implements Parcelable {
 
     public void setVehicleID(String vehicleID) {
         this.vehicleID = vehicleID;
-    }
-
-    public ArrayList<String> getRidersUIDs() {
-        return ridersUIDs;
-    }
-
-    public void setRidersUIDs(ArrayList<String> ridersUIDs) {
-        this.ridersUIDs = ridersUIDs;
     }
 
     public boolean isOpen() {
@@ -134,10 +123,12 @@ public class Vehicle implements Parcelable {
 
     public ArrayList<String> getReservedUIDs() { return reservedUIDs; }
 
-    public void setReservedUIDs(ArrayList<String> reservedUIDs) { this.reservedUIDs = reservedUIDs; }
+    public void setReservedUIDs(ArrayList<String> reservedUIDs) {
+        reservedUIDs.add(mAuth.getUid());
+        this.reservedUIDs = reservedUIDs;
+    }
 
     public void addReservedUID(String uid) {
-        String reservedUID = mAuth.getUid();
     }
 
     public void printInfo(){
@@ -152,7 +143,6 @@ public class Vehicle implements Parcelable {
                 ", capacity=" + capacity +
                 ", remainingCapacity=" + remainingCapacity +
                 ", vehicleID='" + vehicleID + '\'' +
-                ", ridersUIDs=" + ridersUIDs +
                 ", open=" + open +
                 ", vehicleType='" + vehicleType + '\'' +
                 ", basePrice=" + basePrice +
@@ -172,7 +162,6 @@ public class Vehicle implements Parcelable {
         dest.writeInt(capacity);
         dest.writeInt(remainingCapacity);
         dest.writeString(vehicleID);
-        dest.writeStringList(ridersUIDs);
         dest.writeByte((byte) (open ? 1 : 0));
         dest.writeString(vehicleType);
         dest.writeDouble(basePrice);

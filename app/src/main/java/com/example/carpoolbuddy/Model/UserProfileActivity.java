@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.carpoolbuddy.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -16,10 +17,14 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
     }
 
-    
-
     public void seeVehicles(View v){
-            Intent intent = new Intent(this, VehiclesInfoActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(this, VehiclesInfoActivity.class);
+        startActivity(intent);
+    }
+
+    public void logOut(View v){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, AuthActivity.class);
+        startActivity(intent);
     }
 }

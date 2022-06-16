@@ -33,7 +33,7 @@ public class VehiclesInfoAdapter extends RecyclerView.Adapter<VehiclesInfoViewHo
     @Override
     public void onBindViewHolder(@NonNull VehiclesInfoViewHolder holder, int position) {
         holder.ownerText.setText(mData.get(position).getOwner());
-        holder.capacityText.setText(String.valueOf(mData.get(position).getCapacity()));
+        holder.capacityText.setText(String.valueOf(mData.get(position).getRemainingCapacity()));
     }
 
     @Override

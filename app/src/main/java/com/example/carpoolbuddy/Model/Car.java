@@ -30,7 +30,6 @@ public class Car extends Vehicle {
                 "capacity=" + getCapacity() +
                 "remainingCapacity=" + getRemainingCapacity() +
                 "vehicleID=" + getVehicleID() +
-                "ridersUIDs=" + getRidersUIDs() +
                 "open=" + isOpen() +
                 "vehicleTpye=" + getVehicleType() +
                 "basePrice=" + getBasePrice() +
