@@ -27,7 +27,6 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
     private TextView vehicleTypeTextView;
     private TextView basePriceTextView;
     private TextView bookedUIDs;
-    private TextView rangeField;
     private Button bookRideButton;
     private LinearLayout layout;
 
