@@ -58,13 +58,6 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
             basePriceTextView.setText(String.valueOf(selectedVehicle.getBasePrice()));
             bookedUIDs.setText(selectedVehicle.getReservedUIDs().toString());
 
-
-            /*if(selectedVehicle.getVehicleType().equals("Car")){
-                rangeField = new TextView(this);
-                rangeField.setText("Range:");
-                layout.addView(rangeField);
-            }*/
-
         }
         bookRideButton = findViewById(R.id.bookRideButton);
         bookRideButton.setOnClickListener(this);
